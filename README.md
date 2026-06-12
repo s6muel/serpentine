@@ -38,10 +38,10 @@ prior to starting Phase Two.
 
 ## Repository Structure
 
-- `PROJECTLOG.md` High-level event and decision log
-- `data/` Benchmarking data
-- `docs/` Reports, decisions, manuals, and other supporting documentation
-- `tools/` Scripts and tooling for benchmark data collection and processing
+- [`PROJECTLOG.md`](PROJECTLOG.md) High-level event and decision log
+- [`data/`](/data/) Benchmarking data
+- [`docs/`](/docs/) Reports, decisions, manuals, and other supporting documentation
+- [`tools/`](/tools/) Scripts and tooling for benchmark data collection and processing
 
 ## Thank You
 
