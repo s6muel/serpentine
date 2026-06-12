@@ -53,13 +53,13 @@ prior to starting Phase Two.
   skills, and for always being happy to spend his spare time nerding out 
   with me. It has been a true pleasure.
 
-## License
+## Copyright and License
 
-Copyright (c) 2026 Samuel Smith.
+Copyright (c) 2026 Samuel Smith. All rights reserved.
 
-The contents of this repository are provided for viewing and educational
-purposes. All rights reserved.
+Documentation, data, diagrams, and other non-software components are 
+provided for viewing and reference. See [COPYRIGHT](COPYRIGHT).
 
-Software and scripts in the `tools/` directory are licensed separately 
-under the MIT License. See [LICENSE](LICENSE).
+Software and scripts in the [`tools/`](/tools/) directory are licensed 
+separately under the MIT License. See [LICENSE](/tools/LICENSE).
 
