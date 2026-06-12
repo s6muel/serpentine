@@ -1,0 +1,116 @@
+- Fri May  8  10:30 - 11:30
+  - Initial setup of Dell Optiplex 7060
+	- Install and test Intel i350-T2
+	  Confirmed as working; confirmed as Intel chips
+	- BIOS
+		- Disabled Secure Boot
+		- Disabled TPM
+	- OPNsense setup
+		- Using ZFS file system
+		- Set 7 phrase diceware phrase as `root` password
+		- System/Settings/General
+			- Set hostname to `serpentine`
+			- Set timezone to Australia/Melbourne
+		- System/Miscellaneous
+			- Enabled Intel crypto hardware acceleration
+			- Set Intel thermal sensors
+			- Enabled `powerd`
+		- Interfaces
+			- `em0` - UNSET/RESERVED
+			  Onboard/motherboard ethernet interface
+			- `igb0` - LAN - 192.168.1.1/24
+			  Port is physically furthest from motherboard / 
+			  closest to PCIe card support bracket
+				- Enabled 'Prevent interface removal'
+			- `igb1` - WAN - DHCP
+			  Port is physicall closest to motherboard / 
+			  furthest from PCIe card support bracket
+				- Enabled 'Prevent interface removal'
+		- Services/Dnsmasq
+			- Disabled IPv6 pool
+			- Configured pool `192.168.1.21` -> 
+			  `192.168.1.254`
+			- Confirmed DHCP service working via LAN; host 
+			  received `.40` address from Serpentine
+		- Firewall
+		  	- Added RFC1918 private address alias group
+		- Firewall Rules
+		  	- Disabled default IPv6 rule
+			- Block RFC1918 group on LAN
+			- Allow LAN ICMP
+			- Allow LAN DNS
+		- Interface/WAN (`igb1`)
+		  	- Added DHCPv4
+			- Disabled DHCPv6
+	- Executed baseline configuration backup
+
+- Fri May  8 20:45:00 AEST 2026
+  - Reminded household members about cutover in 15 minutes.
+  - Emailed reference copies of implementation plan and current/new 
+    topologies for easy reference.
+
+- Fri May  8 20:54:54 AEST 2026
+  - Pre cut over checks and preparation
+  - [x] base config backed up
+  - [x] ethernet cables prepared and ready
+  - [x] optiplex prepared
+  - [x] topology, plan, and log readily accessible
+  - Inventory count:
+    - 1 x optiplex
+    - 2 x eero
+    - 1 x 2m red cat6a
+    - 1 x 0.5m black cat6a
+    - 1 x 1.5m black cat6a
+    - 4 x 0.75m blue cat6a
+    - 3 x 1m white cat6a
+
+- Fri May  8 21:00:00 AEST 2026
+  - Cutover and installation
+  - 21:00, Eeros configured in Bridge Mode and restarted
+  - 21:05, Eeros confirmed in bridge mode, disconnected WAN and LAN, 
+    removed existing cables from patch panel and switch
+  - 21:06, Optiplex WAN connected, LAN connected to laptop host for 
+    configuration
+    - interface not obtaining an IPv4 address
+    - review Firewall/Log Files/Live View logs, got DHCPv6 requests then 
+      nothing, WAN is IPv4, disable v6
+    - System/Gateways/Configuration, disable and delete the 
+      WAN_DHCP6 interface, not able to
+    - live view open in separate tab for reference
+    - checking Interfaces/[WAN]
+      - disable 'Prevent interface removal' still cant delete the 
+	WAN_DHCP6 i/f
+      - IPv6 configuration type under 'Generic configuration' and set to 
+	'None'
+      - retried deleting WAN_DHCP6 i/f - success!
+    - still no DHCP4 address obtained in live logs
+    - disable and enable WAN_DHCP4 gateway in 
+      System/Gateways/Configuration, instantly got an IPv4 addr, Live 
+      Logs with expected DHCPv4 requests and responses from CGNAT 
+      addresses
+  - 21:20, confirmed WAN connection with LAN host able to connect to 
+    kagi.com indicating IP connectivity and DNS resolution
+    - Made backup of current working configuration as baseline
+  - 21:25, disconnect laptop host, connect Eero to LAN i/f, check Eero 
+    app, indicates WAN address
+    - logs indicating DHCP requests from wireless hosts!
+    - review Services/Dnsmasq DHCP/Leases, we have success!
+  - 21:30, connected switch ports to patch panel per topology; changing 
+    port assignments to match patch panel numbers for clarity and easy 
+    debugging/troubleshooting/cable ID; connected Eero second port to 
+    switch Port 8; connected second Eero via room wall port
+    - app confirms second Eero attached and is handing clients over on 
+      mesh
+    - glad to have topology on hand, very quick to connect
+    - [ ] update implementation plan and topology with port numbers
+  - 21:35, run once off benchmark on wireless host, initiate a video 
+    stream, all working fine
+  - [ ] add non root user for webgui monitoring and auditing; allowed to 
+    apply system updates; config backups; reboot (not power-off, if 
+    possible)
+  - 21:40, communicated to household that cutover is finished and normal 
+    network functionality has resumed
+  - 21:45, cutover officially declared complete
+    - initiated benchmarking
+    - May 9, 09:30, bench marking complete
+
