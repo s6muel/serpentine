@@ -26,10 +26,9 @@ and engineering artefacts produced as the project progresses.
 
 ## Project Overview
 
-Status
-: Phase One implementation and cutover complete. Follow-up to validate a 
-regression hypothesis and benchmarking anomaly is required prior to 
-starting Phase Two.
+**Status:** Phase One implementation and cutover complete. Follow-up to 
+validate a regression hypothesis and benchmarking anomaly is required 
+prior to starting Phase Two.
 
 | Phase | Description | Status |
 |---------|---------|---------|
@@ -39,17 +38,10 @@ starting Phase Two.
 
 ## Repository Structure
 
-`PROJECTLOG.md`
-: High-level event and decision log
-
-`data/`
-: Benchmarking data
-
-`docs/`
-: Reports, decisions, manuals, and other supporting documentation
-
-`tools/`
-: Scripts and tooling for benchmark data collection and processing
+- `PROJECTLOG.md` High-level event and decision log
+- `data/` Benchmarking data
+- `docs/` Reports, decisions, manuals, and other supporting documentation
+- `tools/` Scripts and tooling for benchmark data collection and processing
 
 ## Thank You
 
