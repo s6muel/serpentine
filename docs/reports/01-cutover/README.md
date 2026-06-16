@@ -57,7 +57,7 @@ improve wireless connection stability and bandwidth. A small form factor
 desktop with an extra network card was used for the gateway to provide
 three interfaces: one for WAN, LAN, and the future lab.
 
-![Phase one implementation network topology diagram](../architecture/phase-01-topology.svg)
+![Phase one implementation network topology diagram](../../architecture/phase-01-topology.svg)
 
 ## Design Decisions
 
@@ -184,7 +184,7 @@ household users experienced minimal impacts to their network use and
 could plan around the maintenance window. I always wanted to ensure that
 my stated goals had the greatest chance of success, so I put in place a
 rollback plan where, if cutover failed, service could be
-restored[^artefact-2].
+restored[^artefact-7].
 
 My first step was to develop a pre-cutover checklist containing a
 step-by-step implementation guide, including hardware configuration
@@ -355,7 +355,7 @@ wired throughput from wireless metrics and provide clear analysis on
 switch, NIC, and cabling performance. As part of phase two, I will
 include wired-to-wired host tests in the benchmarking method.
 
-The `benchmarker.sh` script does not have an initial wait period to
+The `benchmarker.sh`[^artefact-9] script does not have an initial wait period to
 allow for clean client-node association prior to the test. This risks
 capturing mesh handoff events that can appear as anomalies, one of which
 occurred in the lounge. To mitigate against this, I investigated
@@ -450,16 +450,16 @@ This TCP throughput regression is nearly identical to the results
 recorded in the lounge that could indicate a lounge-specific regression
 or interference, which required a review of the raw TCP results.
 
-Analysis of the output from test 2 `wired-oaktree-tcp-2605131245.txt`
-reveals the source of the 88 retransmits and illustrates a possible
-mid-test mesh hand-off or other wireless signal interference. The test
-demonstrated speed fluctuations followed by a single burst of
-retransmissions before recovering and stabilising. Initially, a speed of
-334Mbps was recorded before quickly recovering to around 600Mbps; this
-was followed by a sudden drop to 226Mbps, then 312Mbps, and finally
-225Mbps where the 88 retransmissions occur. Throughput recovers
-to around 600Mbps and higher, in line with test runs 1 and 3, suggesting
-an anomaly rather than a demonstrable regression.
+Analysis of the output from test 2[^artefact-8] reveals the source of
+the 88 retransmits and illustrates a possible mid-test mesh hand-off or
+other wireless signal interference. The test demonstrated speed
+fluctuations followed by a single burst of retransmissions before
+recovering and stabilising. Initially, a speed of 334Mbps was recorded
+before quickly recovering to around 600Mbps; this was followed by a
+sudden drop to 226Mbps, then 312Mbps, and finally 225Mbps where the 88
+retransmissions occur. Throughput recovers to around 600Mbps and higher,
+in line with test runs 1 and 3, suggesting an anomaly rather than a
+demonstrable regression.
 
 To mitigate against such anomalies in the future, the `benchmarker.sh`
 script should include an idle period of 30-60 seconds prior to test
@@ -474,7 +474,6 @@ topology.
 
 ### 5. WAN throughput retained post cutover
 
-[Chart: WAN Download Results]
 ![WAN download throughput pre and post cutover](assets/wan-download-throughput.svg)
 
 In pre-cutover testing, the wired anchor recorded an average download
@@ -483,7 +482,6 @@ reporting an average 716Mbps. These figures varied from 625Mbps to
 771Mbps across both runs. I observed similar results in upload
 throughput, recording an average of 49Mbps in both network states.
 
-[Chart: WAN Upload Results]
 ![WAN upload throughput pre and post cutover](assets/wan-upload-throughput.svg)
 
 These averages represent around 85% and 98% utilisation with my plan
@@ -614,21 +612,29 @@ publicly exposed DMZ.
 [^freebsd-docs]: FreeBSD 14.3 Hardware Notes - Ethernet
   https://www.freebsd.org/releases/14.3R/hardware/#ethernet
 
-[^artefact-1]: Project Artefact 1 - Serpentine Project Overview
+[^artefact-1]: Project Artefact - Serpentine Project Overview
   https://github.com/s6muel/Serpentine/blob/main/docs/architecture/project-overview.md
 
-[^artefact-2]: Project Artefact 2 - Phase One Implementation Plan
-  https://github.com/s6muel/Serpentine/blob/main/docs/phases/01-cutover/implementation-plan.md
+[^artefact-2]: Project Artefact - Phase One Implementation Plan Risk Register
+  https://github.com/s6muel/Serpentine/blob/main/docs/phases/01-cutover/implementation-plan.md#risk-register
 
-[^artefact-3]: Project Artefact 3 - Phase One Setup Log
-  https://github.com/s6muel/Serpentine/blob/main/docs/phases/01-cutover/setup-log.txt
+[^artefact-3]: Project Artefact - Phase One Setup Log
+  https://github.com/s6muel/Serpentine/blob/main/docs/phases/01-cutover/setup-log.txt#LN74
 
-[^artefact-4]: Project Artefact 4 - Benchmark Methodology
+[^artefact-4]: Project Artefact - Benchmark Methodology
   https://github.com/s6muel/Serpentine/blob/main/docs/phases/01-cutover/benchmark-method.md
 
-[^artefact-5]: Project Artefact 5 - Phase One Benchmark Data
+[^artefact-5]: Project Artefact - Phase One Benchmark Data
   https://github.com/s6muel/Serpentine/tree/main/data/benchmarks/01-cutover
 
-[^artefact-6]: Project Artefact 6 - Benchmark Analysis Spreadsheet
+[^artefact-6]: Project Artefact - Benchmark Analysis Spreadsheet
   https://docs.google.com/spreadsheets/d/1w_0cToFA3ZQH7Ja0yRGacq3VAepFi1VUEhrT5V05hGM
 
+[^artefact-7]: Project Artefact - Phase One Implementation Plan Cutover Rollback Plan
+  https://github.com/s6muel/Serpentine/blob/main/docs/phases/01-cutover/implementation-plan.md#cutover-rollback-plan
+
+[^artefact-8]: Project Artefact - Oaktree TCP Throughput Test 2
+  https://github.com/s6muel/Serpentine/blob/main/data/benchmarks/01-cutover/raw/post-cutover/wired-oaktree-tcp-2605131245.txt
+
+[^artefact-9]: Project Artefact - Benchmarking script `benchmarker.sh`
+  https://github.com/s6muel/serpentine/blob/main/tools/benchmarking/benchmarker.sh
