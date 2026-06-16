@@ -36,6 +36,16 @@ prior to starting Phase Two.
 | 01-a | Validation and follow up | In Progress |
 | 02 | Implement IDS | Planning |
 
+## Reports
+
+- [Phase One Cutover Report](docs/phases/01-cutover/)
+
+## Benchmark Data
+
+The [`serpentine-benchmarks` spreadsheet on Google Sheets](https://docs.google.com/spreadsheets/d/1w_0cToFA3ZQH7Ja0yRGacq3VAepFi1VUEhrT5V05hGM/)
+is the canonical source for processed benchmark data and analysis.
+Original raw outputs can be found in [`data/benchmarks/`](/data/benchmarks).
+
 ## Repository Structure
 
 - [`PROJECTLOG.md`](PROJECTLOG.md) High-level event and decision log
