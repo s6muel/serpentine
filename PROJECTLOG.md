@@ -6,6 +6,12 @@ chronological order.
 Note: Entries prior to 2026-06-06 were reconstructed retrospectively 
 from my handwritten and typed notes and documentation.
 
+## 2026-06-21
+
+- Added physical topology diagram to represent Phase One changes
+  - Established `docs/architecture/diagrams` as path for current, 
+    reference artefacts
+
 ## 2026-06-16
 
 - Published Phase One cutover report and associated documentation
