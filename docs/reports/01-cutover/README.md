@@ -57,7 +57,7 @@ improve wireless connection stability and bandwidth. A small form factor
 desktop with an extra network card was used for the gateway to provide
 three interfaces: one for WAN, LAN, and the future lab.
 
-![Phase one implementation network topology diagram](../../architecture/phase-01-topology.svg)
+![Phase one implementation network topology diagram](../../phases/01-cutover/phase-01-topology.svg)
 
 ## Design Decisions
 
