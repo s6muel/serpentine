@@ -12,6 +12,12 @@ from my handwritten and typed notes and documentation.
   - Established `docs/architecture/diagrams` as path for current, 
     reference artefacts
 
+## 2026-08-05
+
+- Applied OPNsense updates 10:13. No restart required
+  - OPNsense 26.1 no longer supported; prompted to upgrade to latest
+- Completed config backup
+
 ## 2026-06-16
 
 - Published Phase One cutover report and associated documentation
