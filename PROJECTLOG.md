@@ -6,17 +6,27 @@ chronological order.
 Note: Entries prior to 2026-06-06 were reconstructed retrospectively 
 from my handwritten and typed notes and documentation.
 
-## 2026-06-21
+## 2026-09-22
 
-- Added physical topology diagram to represent Phase One changes
-  - Established `docs/architecture/diagrams` as path for current, 
-    reference artefacts
+- Serpentine suffered hardware failure
+  - Discovered on loss of WAN and DHCP services on network. Power LED
+    blinking amber in -.-...-.-.-.-.-.-.- (2,7) pattern. Identified as
+    memory failure in Dell documentation.
+  - Re-seated RAM, no change; moved module to another DIMM slot, no
+    change. Determined as RAM module failure.
+  - Network topology rolled back and running with Eero as gateway.
 
 ## 2026-08-05
 
 - Applied OPNsense updates 10:13. No restart required
   - OPNsense 26.1 no longer supported; prompted to upgrade to latest
 - Completed config backup
+
+## 2026-06-21
+
+- Added physical topology diagram to represent Phase One changes
+  - Established `docs/architecture/diagrams` as path for current, 
+    reference artefacts
 
 ## 2026-06-16
 
@@ -98,4 +108,3 @@ from my handwritten and typed notes and documentation.
 ## 2026-04-21
 
 - Started planning Serpentine homelab project
-
